@@ -5,4 +5,14 @@ Belle II in Tsukuba, Japan is an experiment where electrons and positrons are co
 
 The original version of ViC can be found here: https://github.com/yuhongtian17/ViC
 ## Setup
-TODO
+First, clone this repository onto a Linux machine with access to one or more CUDA-capable Nvidia graphics cards:
+
+```git clone https://github.com/smf0x10/ViC-for-Belle-2.git```
+
+Enter the mmdetection directory:
+
+```cd ViC-for-Belle-2/mmdetection```
+
+Install the dependencies (If you happen to be using Iowa State's high-performance computing cluster for this, make sure you start an interactive session with a machine that has a GPU before doing this)
+
+```python3 setup.py install```
