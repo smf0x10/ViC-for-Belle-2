@@ -4,6 +4,9 @@ Project Abstract:
 Belle II in Tsukuba, Japan is an experiment where electrons and positrons are collided at relativistic speeds in a particle accelerator to study the differences between matter and antimatter. High-energy electron-positron collisions create other particles, which can be detected with a series of concentric detectors surrounding the collision point. One such detector is the calorimeter, and one such particle is the K-Long. K-Longs interact with the calorimeter’s detector material through the strong nuclear force, which the calorimeter reads as a blob of energy roughly centered on the K-Long’s position. For this project, we are taking a machine learning system originally created to find antineutrons traveling through the calorimeter of the BES III experiment in Bejing and adapting it to find the position and momentum of K-Longs in the Belle II calorimeter. This system projects the energy observed in the calorimeter’s individual crystal sensors onto a two-dimensional image, then uses an image recognition algorithm to find the most likely position and momentum of the K-Long. We compared this system to current methods of locating K-Longs and found that it gave a more accurate position estimate than current models when running on simulated data with no background, and that it could provide an estimate for the K-Long's momentum, which our current algorithms lack. ViC was further improved by altering the input images to include data from the inner layers of the K-Long and Muon Detector (KLM).
 
 The original version of ViC can be found here: https://github.com/yuhongtian17/ViC
+
+MMDetection, the image recognition algorithm that ViC uses, can be found here: https://github.com/open-mmlab/mmdetection/tree/main
+
 ## Setup
 First, clone this repository onto a Linux machine with access to one or more CUDA-capable Nvidia graphics cards:
 
@@ -31,7 +34,7 @@ This will generate a ROOT file containing all the particle gun data; to use it w
 Note that these scripts automatically prune events that have no hits in the calorimeter. The script for KLM data also prunes events that have no estimation from the KLM cluster algorithm, which is why its sample JSON file has fewer events than the one that only contains calorimeter data. This was done for easier comparison between the algorithms.
 
 ## Training
-To train the model, you will need some the JSON files containg the raw calorimeter and KLM data and annotations in the mmdetection/data/BELLE2/bbox_scale_10 directory. The exact paths to these files are specified in mmdetection/configs/belle_2/belle_2_datasets/belle_2_detection.py and belle_2_detection_klm.py. When running with KLM data, the expected formats of these JSON files is different from the expected formats when running without KLM data.
+Before training the model, some JSON files containg the calorimeter and KLM data must be placed in the mmdetection/data/BELLE2/bbox_scale_10 directory. Very small JSON files for initial testing can be found in the pgun_generation/bbox_scale_10 directory. See the above section for how to generate new ones. The exact paths to these files are specified in mmdetection/configs/belle_2/belle_2_datasets/belle_2_detection.py (for runs without KLM data) and belle_2_detection_klm.py (for runs with KLM data). When running with KLM data, the expected formats of these JSON files is different from the expected formats when running without KLM data.
 
 The belle_2_detection.py and belle_2_detection_klm.py scripts each contain a list named `train_ann_files` and two variables called `val_ann_file` and `test_ann_file`. When adding a new data file to mmdetection/data/BELLE2/bbox_scale_10, update these variables with the appropriate path to make the algorithm use them for training, evaluation, or testing.
 
@@ -39,7 +42,7 @@ Once the data files are present and the config files have been updated according
 
 ```./train-belle-2-mmdet.sh``` to train without KLM data on ECL-only data files 
 
-```./train-belle-2-klm-mmdet.sh``` to train on data files with KLM data included
+```./train-belle-2-klm-mmdet.sh``` to train on data files with ECL and KLM data included
 
 ## Testing
 When the training process has finished, run one of the following scripts to test the model on a new set of data:
