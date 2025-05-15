@@ -17,6 +17,19 @@ Install the dependencies (If you happen to be using Iowa State's high-performanc
 
 ```python3 setup.py install```
 
+## Event Generation
+A sample basf2 script has been provided in the pgun_generation folder for generating particle gun events from the Belle II experiment specifically. It can be run on the KEKCC server after setting up a basf2 release. The script was last tested with release 08-02-04. To use it, specify a number of events and an output file like this:
+
+```basf2 -n 100 prod_pgun_KL_reco.py pgun_KL_sample.root```
+
+This will generate a ROOT file containing all the particle gun data; to use it with ViC, the relevant data must be extracted into a JSON file. To do this, use the belle2_root_to_json scripts like this:
+
+```python3 belle2_root_to_json.py --srcfile pgun_KL_sample.root --destroot .``` to omit KLM data
+
+```python3 belle2_root_to_json_klm.py --srcfile pgun_KL_sample.root --destroot .``` to include KLM data
+
+Note that these scripts automatically prune events that have no hits in the calorimeter. The script for KLM data also prunes events that have no estimation from the KLM cluster algorithm, which is why its sample JSON file has fewer events than the one that only contains calorimeter data. This was done for easier comparison between the algorithms.
+
 ## Training
 To train the model, you will need some the JSON files containg the raw calorimeter and KLM data and annotations in the mmdetection/data/BELLE2/bbox_scale_10 directory. The exact paths to these files are specified in mmdetection/configs/belle_2/belle_2_datasets/belle_2_detection.py and belle_2_detection_klm.py. When running with KLM data, the expected formats of these JSON files is different from the expected formats when running without KLM data.
 
