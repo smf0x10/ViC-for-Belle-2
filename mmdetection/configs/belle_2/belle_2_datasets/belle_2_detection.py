@@ -36,6 +36,9 @@ test_pipeline = [
 ]
 
 # ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #
+# Training, validation, and testing files are defined here. For demonstration purposes, they are all set to the same very small file.
+# To create models with any semblance of effectiveness, generate new json files using the tools in the repo on the KEK CC server
+# and make each step use different files
 train_ann_files=[
     #'old/pgun_k_long_1__b00000001__e00009138.json',
     #'old/pgun_k_long_2__b00000001__e00009049.json',
@@ -49,21 +52,24 @@ train_ann_files=[
     #'pgun_gamma_1__b00000001__e00019320.json',
     #'pgun_gamma_2__b00000001__e00019364.json',
     #'pgun_gamma_3__b00000001__e00019352.json',
-    'pgun_k_long_1__b00000001__e00016105.json',
-    'pgun_k_long_2__b00000001__e00016173.json',
-    'pgun_k_long_3__b00000001__e00016055.json',
+    #'pgun_k_long_1__b00000001__e00016105.json',
+    #'pgun_k_long_2__b00000001__e00016173.json',
+    #'pgun_k_long_3__b00000001__e00016055.json',
+    'pgun_KL_sample__b00000001__e00000079.json'
     ]
 
 #val_ann_file='old/pgun_k_long_4__b00000001__e00009110.json'
 #val_ann_file='old/pgun_k_long_4__b00000001__e00010000.json'
 #val_ann_file='pgun_k_long_high_p_4__b00000001__e00016740.json'
 #val_ann_file='pgun_gamma_4__b00000001__e00019347.json'
-val_ann_file='pgun_k_long_4__b00000001__e00015869.json'
+#val_ann_file='pgun_k_long_4__b00000001__e00015869.json'
+val_ann_file='pgun_KL_sample__b00000001__e00000079.json'
 #test_ann_file='old/pgun_k_long_5__b00000001__e00009092.json'
 #test_ann_file='old/pgun_k_long_5__b00000001__e00010000.json'
 #test_ann_file='pgun_k_long_high_p_5__b00000001__e00016748.json'
 #test_ann_file='pgun_gamma_5__b00000001__e00019313.json'
-test_ann_file='pgun_k_long_5__b00000001__e00009480.json'
+#test_ann_file='pgun_k_long_5__b00000001__e00009480.json'
+test_ann_file='pgun_KL_sample__b00000001__e00000079.json'
 
 
 train_dataset_base = dict(

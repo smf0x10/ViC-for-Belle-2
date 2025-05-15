@@ -36,6 +36,10 @@ test_pipeline = [
 ]
 
 # ##### ##### ##### ##### ##### ##### ##### ##### ##### ##### #
+# Training, validation, and testing files are defined here. For demonstration purposes, they are all set to the same very small file.
+# To create models with any semblance of effectiveness, generate new json files using the tools in the repo on the KEK CC server
+# and make each step use different files
+
 train_ann_files=[
     #'old/pgun_k_long_1__b00000001__e00009138.json',
     #'old/pgun_k_long_2__b00000001__e00009049.json',
@@ -56,9 +60,10 @@ train_ann_files=[
     #'with_klm/pgun_k_long_1__b00000001__e00009348.json',
     #'with_klm/pgun_k_long_2__b00000001__e00009520.json',
     #'with_klm/pgun_k_long_3__b00000001__e00009340.json',
-    'with_klm_sizes/pgun_k_long_1__b00000001__e00009348.json',
-    'with_klm_sizes/pgun_k_long_2__b00000001__e00009520.json',
-    'with_klm_sizes/pgun_k_long_3__b00000001__e00009340.json'
+    #'with_klm_sizes/pgun_k_long_1__b00000001__e00009348.json',
+    #'with_klm_sizes/pgun_k_long_2__b00000001__e00009520.json',
+    #'with_klm_sizes/pgun_k_long_3__b00000001__e00009340.json'
+    'pgun_KL_sample_klm__b00000001__e00000047.json'
     ]
 
 #val_ann_file='old/pgun_k_long_4__b00000001__e00009110.json'
@@ -67,14 +72,17 @@ train_ann_files=[
 #val_ann_file='pgun_gamma_4__b00000001__e00019347.json'
 #val_ann_file='pgun_k_long_4__b00000001__e00015869.json'
 #val_ann_file='with_klm/pgun_k_long_4__b00000001__e00009208.json'
-val_ann_file='with_klm_sizes/pgun_k_long_4__b00000001__e00009208.json'
+#val_ann_file='with_klm_sizes/pgun_k_long_4__b00000001__e00009208.json'
+val_ann_file='pgun_KL_sample_klm__b00000001__e00000047.json'
+
 #test_ann_file='old/pgun_k_long_5__b00000001__e00009092.json'
 #test_ann_file='old/pgun_k_long_5__b00000001__e00010000.json'
 #test_ann_file='pgun_k_long_high_p_5__b00000001__e00016748.json'
 #test_ann_file='pgun_gamma_5__b00000001__e00019313.json'
 #test_ann_file='pgun_k_long_5__b00000001__e00009480.json'
 #test_ann_file='with_klm/pgun_k_long_5__b00000001__e00009480.json'
-test_ann_file='with_klm_sizes/pgun_k_long_5__b00000001__e00009480.json'
+#test_ann_file='with_klm_sizes/pgun_k_long_5__b00000001__e00009480.json'
+test_ann_file='pgun_KL_sample_klm__b00000001__e00000047.json'
 
 
 train_dataset_base = dict(
